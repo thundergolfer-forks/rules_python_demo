@@ -1,0 +1,5 @@
+google-api-core==1.26.3
+google-auth==1.30.0
+google-cloud-monitoring==1.1.0
+google-cloud-pubsub==0.38.0
+oauth2client==4.1.3

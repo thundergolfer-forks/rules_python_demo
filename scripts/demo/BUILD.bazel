@@ -1,0 +1,26 @@
+load("@rules_python//python:defs.bzl", "py_test", "py_binary", "py_library")
+load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
+load("@deps//:requirements.bzl", "requirement")
+
+compile_pip_requirements(
+   name = "requirements",
+   extra_args = [
+       "--allow-unsafe",
+       "--no-emit-index-url",
+   ],
+   env = {
+       # Enables locking dependencies from jfrog
+       "PIP_CONFIG_FILE": "~/.pip/pip.conf",
+   },
+)
+
+# Script called by the jenkins metrics-report job
+py_binary(
+    name = "demo",
+    srcs = ["demo.py"],
+    deps = [
+        requirement("google-auth"),
+        requirement("google-cloud-pubsub"),
+        requirement("google-api-core"),
+    ],
+)
