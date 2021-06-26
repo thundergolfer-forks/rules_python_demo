@@ -19,8 +19,6 @@ py_binary(
     name = "demo",
     srcs = ["demo.py"],
     deps = [
-        requirement("google-auth"),
-        requirement("google-cloud-pubsub"),
         requirement("google-api-core"),
     ],
 )
